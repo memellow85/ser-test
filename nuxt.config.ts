@@ -12,6 +12,10 @@ export default defineNuxtConfig({
         },
       ],
       link: [
+        {
+          rel: 'manifest', 
+          href: '/manifest.webmanifest'
+        },
         { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap' }
@@ -39,7 +43,23 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
+    '@nuxtjs/device',
+    '@vite-pwa/nuxt',
   ],
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Report',
+      short_name: 'Report',
+      start_url: '/',
+      display: 'standalone',
+      description: '',
+      icons: []
+    },
+    devOptions: {
+      enabled: true, // utile anche in sviluppo
+    }
+  },
   i18n: {
     vueI18n: './../i18n.config.ts',
     bundle: {
