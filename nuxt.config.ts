@@ -1,5 +1,3 @@
-import legacy from '@vitejs/plugin-legacy'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
@@ -20,9 +18,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  runtimeConfig: {},
-  debug: false,
-  dev: !process.env.PROD,
+  dev: true,
   css: ['~/assets/_extra.scss'],
   postcss: {
     plugins: {
@@ -49,12 +45,6 @@ export default defineNuxtConfig({
     bundle: {
       optimizeTranslationDirective: false,
     },
-  },
-  pinia: {
-    storesDirs: [
-      'stores',
-      './stores/**',
-    ], // Assicurati che Pinia sia configurato correttamente
   },
   compatibilityDate: '2025-04-22',
 })
