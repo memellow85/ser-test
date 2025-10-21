@@ -1,3 +1,5 @@
+import legacy from '@vitejs/plugin-legacy'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
@@ -65,6 +67,28 @@ export default defineNuxtConfig({
     bundle: {
       optimizeTranslationDirective: false,
     },
+  },
+  vite: {
+    plugins: [
+      legacy({
+        // target “prudente” per TV/browser datati
+        targets: [
+          'defaults',
+          'not IE 11',
+          'Android >= 5',
+          'iOS >= 10',
+          'Chrome >= 49',
+          'Safari >= 10',
+          'Samsung >= 4',
+          'Opera >= 36'
+        ],
+        renderLegacyChunks: true,
+        modernPolyfills: true,
+        additionalLegacyPolyfills: ['regenerator-runtime/runtime']
+      })
+    ],
+    // assicura il polyfill per modulepreload dove serve
+    modulePreload: { polyfill: true }
   },
   compatibilityDate: '2025-04-22',
 })
